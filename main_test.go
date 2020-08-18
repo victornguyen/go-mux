@@ -33,7 +33,7 @@ func ensureTableExists() {
 
 func clearTable() {
 	a.DB.Exec("DELETE FROM products")
-	a.DB.Exec("ALTER SEQUENCE products_id_seq RESTART WITH 1`")
+	a.DB.Exec("ALTER SEQUENCE products_id_seq RESTART WITH 1")
 }
 
 const tableCreationQuery = `CREATE TABLE IF NOT EXISTS products
@@ -134,11 +134,11 @@ func TestUpdateProduct(t *testing.T) {
 		t.Errorf("Expected the id to remain the same (%v). Got %v", originalProduct["id"], m["id"])
 	}
 
-	if m["name"] != originalProduct["name"] {
+	if m["name"] == originalProduct["name"] {
 		t.Errorf("Expected the name to change from %v to %v. Got %v", originalProduct["name"], m["name"], m["name"])
 	}
 
-	if m["price"] != originalProduct["price"] {
+	if m["price"] == originalProduct["price"] {
 		t.Errorf("Expected the price to change from %v to %v. Got %v", originalProduct["price"], m["price"], m["price"])
 	}
 }
